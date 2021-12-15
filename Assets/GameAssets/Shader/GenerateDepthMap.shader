@@ -23,15 +23,16 @@ Shader "CustomShadow/GenerateDepthMap"
             struct appdata
             {
                 float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
-				float4 pos : SV_POSITION;
+				// 不能用SV_POSITION 在DX10以后的语义SV为不能改变的
+				float4 pos : POSITION;
             };
 
             struct v2f
             {
                 float2 uv : TEXCOORD0;
                 UNITY_FOG_COORDS(1)
-                float4 pos : SV_POSITION;
+                float4 pos : POSITION;
+				float depth : TEXCOORD1;
             };
 
             v2f vert (appdata v)
@@ -58,4 +59,5 @@ Shader "CustomShadow/GenerateDepthMap"
             ENDCG
         }
     }
+	//FallBack "Reflective/VertexLit"
 }
