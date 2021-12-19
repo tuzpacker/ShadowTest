@@ -40,7 +40,32 @@ Shader "CustomShadow/ShadowMap"
                 float3 normal	: NORMAL;
             };
 
-            //光照参数
+
+            float4x4 shadow_transform_mat;
+            sampler2D _MainTex;
+            float4 _MainTex_ST;
+
+            v2f vert (appdata v)
+            {
+                // 计算出该点在灯光下的深度
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.wpos = mul(UNITY_MATRIX_M, v.vertex).xyz;
+
+                o.color = v.color;
+				o.uv = v.uv;
+				o.normal = mul((float3x3)UNITY_MATRIX_M, v.normal); 
+                
+                // o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+
+                float4 wpos = mul(unity_ObjectToWorld,v.vertex);
+                o.shadowPos = mul(shadow_transform_mat,wpos);
+                // o.shadowPos.xyz /= o.shadowPos.w;
+
+                return o;
+            }
+
+                        //光照参数
             float4 MyLightDir;
             float4 ambientColor;
 			float4 diffuseColor;
@@ -49,9 +74,7 @@ Shader "CustomShadow/ShadowMap"
 
             float _dark;//阴影强度
 
-            float4x4 shadow_transform_mat;
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
+            sampler2D shadowMap_data;     
 
             float4 basicLighting(float3 wpos, float3 normal)
 			{
@@ -73,31 +96,9 @@ Shader "CustomShadow/ShadowMap"
 				color += specular;
 
 				return color;
-			}
+			}       
 
-            v2f vert (appdata v)
-            {
-                // 计算出该点在灯光下的深度
-                v2f o;
-                o.uv=v.uv;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.wpos = mul(UNITY_MATRIX_M, v.vertex).xyz;
-                // o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-
-                o.color = v.color;
-				o.uv = v.uv;
-				o.normal = mul((float3x3)UNITY_MATRIX_M, v.normal); 
-
-                float4 wpos = mul(unity_ObjectToWorld,v.vertex);
-                o.shadowPos = mul(shadow_transform_mat,wpos);
-                // o.shadowPos.xyz /= o.shadowPos.w;
-
-                return o;
-            }
-
-            sampler2D shadowMap_data;            
-
-            float shadow(v2f i)
+            float4 shadow(v2f i)
 			{
                 float4 deepVec = i.shadowPos;
                 // 正数化
@@ -107,10 +108,11 @@ Shader "CustomShadow/ShadowMap"
                 float orign_depth=tex2D(shadowMap_data,compare).r;
 
                 // 比较
-                if(cur_depth<orign_depth){
-                    return float4(_dark,_dark,_dark,1);
-                }else{
+                // return float4(cur_depth,0,0,1);
+                if(cur_depth<=orign_depth){
                     return float4(1,1,1,1);
+                }else{
+                    return float4(_dark,_dark,_dark,1);
                 }
             }
 
@@ -123,8 +125,10 @@ Shader "CustomShadow/ShadowMap"
                 
                 float4 s = shadow(i);
 
-                float4 c = basicLighting(i.wpos, i.normal);
-				return c * s;
+                // float4 c = basicLighting(i.wpos, i.normal);
+                
+				// return c * s;
+                return s;
             }
             ENDCG
         }

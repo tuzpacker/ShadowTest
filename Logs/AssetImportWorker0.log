@@ -15,11 +15,11 @@ C:/Users/apls/Desktop/code/Test/ShadowTest
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-12521
+10435
 Successfully changed project path to: C:/Users/apls/Desktop/code/Test/ShadowTest
 C:/Users/apls/Desktop/code/Test/ShadowTest
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 25.68 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 26.99 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.3f1c1 (a34b99c2c582)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.3f1c1/Editor/Data/Resources/UnitySubsystems
@@ -35,22 +35,22 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.3f1c1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.3f1c1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.3f1c1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56740
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56248
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.3f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.006939 seconds.
+Registered in 0.006962 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 27.18 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 25.31 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  4.093 seconds
+- Completed reload, in  5.218 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.001461 seconds.
+Registered in 0.001449 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 0.18 ms, found 0 plugins.
@@ -59,62 +59,47 @@ Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.981 seconds
+- Completed reload, in  0.913 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
-Refreshing native plugins compatible for Editor in 0.21 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1120 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 59.2 MB.
-System memory in use after: 59.3 MB.
-
-Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 1573.
-Total: 2.231300 ms (FindLiveObjects: 0.233800 ms CreateObjectMapping: 0.095800 ms MarkObjects: 1.784600 ms  DeleteObjects: 0.115800 ms)
-
-========================================================================
-Received Import Request.
-  path: Assets/GameAssets/Shader/GenerateDepthMap.shader
-  artifactKey: Guid(f6e3e0f887dd74a47bab3a405822ab1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GameAssets/Shader/GenerateDepthMap.shader using Guid(f6e3e0f887dd74a47bab3a405822ab1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3dbdb396aa3b31b329402a9f73a4c33f') in 0.049933 seconds
-  Import took 0.054272 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 33.830816 seconds.
-  path: Assets/GameAssets/Shader/GenerateDepthMap.shader
-  artifactKey: Guid(f6e3e0f887dd74a47bab3a405822ab1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GameAssets/Shader/GenerateDepthMap.shader using Guid(f6e3e0f887dd74a47bab3a405822ab1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3cefd8793e4a365e8e14e5fbec5d3573') in 0.008152 seconds
-  Import took 0.010993 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.001609 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
 Refreshing native plugins compatible for Editor in 0.31 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Invoked RoslynAnalysisRunner static constructor.
-RoslynAnalysisRunner will not be running.
-RoslynAnalysisRunner has terminated.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.202 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.26 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1112 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 58.8 MB.
-System memory in use after: 58.9 MB.
+Unloading 1119 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 59.1 MB.
+System memory in use after: 59.2 MB.
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1576.
-Total: 1.643400 ms (FindLiveObjects: 0.132100 ms CreateObjectMapping: 0.033300 ms MarkObjects: 1.423300 ms  DeleteObjects: 0.053700 ms)
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 1573.
+Total: 1.553600 ms (FindLiveObjects: 0.118200 ms CreateObjectMapping: 0.034200 ms MarkObjects: 1.310600 ms  DeleteObjects: 0.089900 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/GameAssets/Shader/GenerateDepthMap.shader
+  artifactKey: Guid(f6e3e0f887dd74a47bab3a405822ab1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameAssets/Shader/GenerateDepthMap.shader using Guid(f6e3e0f887dd74a47bab3a405822ab1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0f75a0f815966f294220b4ce73b7c79') in 0.044270 seconds
+  Import took 0.047565 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000258 seconds.
+  path: Assets/GameAssets/Shader/ShadowMap.shader
+  artifactKey: Guid(e11122c49084d874b94e412d8bc70561) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameAssets/Shader/ShadowMap.shader using Guid(e11122c49084d874b94e412d8bc70561) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5652372729775205050a7447ac701ad2') in 0.008544 seconds
+  Import took 0.010400 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 49.575869 seconds.
+  path: Assets/GameAssets/Shader/ShadowMap.shader
+  artifactKey: Guid(e11122c49084d874b94e412d8bc70561) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GameAssets/Shader/ShadowMap.shader using Guid(e11122c49084d874b94e412d8bc70561) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3221bd5b3bace8effd23196effb6539a') in 0.008743 seconds
+  Import took 0.011552 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.002248 seconds.
+Registered in 0.001485 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 0.20 ms, found 0 plugins.
@@ -123,15 +108,15 @@ Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.251 seconds
+- Completed reload, in  1.022 seconds
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.29 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 0.27 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1112 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 58.9 MB.
-System memory in use after: 58.9 MB.
+Unloading 1110 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 58.6 MB.
+System memory in use after: 58.7 MB.
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1579.
-Total: 2.233100 ms (FindLiveObjects: 0.233100 ms CreateObjectMapping: 0.067600 ms MarkObjects: 1.880700 ms  DeleteObjects: 0.050200 ms)
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 1576.
+Total: 1.891800 ms (FindLiveObjects: 0.219900 ms CreateObjectMapping: 0.063200 ms MarkObjects: 1.585300 ms  DeleteObjects: 0.022000 ms)
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file

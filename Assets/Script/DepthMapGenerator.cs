@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class DepthMapGenerator : MonoBehaviour
 {
     public RenderTexture shadowMap;
@@ -18,13 +19,14 @@ public class DepthMapGenerator : MonoBehaviour
             return;
 
         _camera.renderingPath = RenderingPath.Forward;
+        Shader.SetGlobalVector("MyLightDir", transform.forward);
+
         //_camera.Render();
         ////世界坐标变化到从视口坐标 再projectionMatrix 投影矩阵变化到屏幕空间的
         var m = _camera.projectionMatrix * _camera.worldToCameraMatrix;
         Shader.SetGlobalMatrix("shadow_transform_mat", m);
         Shader.SetGlobalTexture("shadowMap_data", shadowMap);
         // 光照方向
-        Shader.SetGlobalVector("MyLightDir", transform.forward);
         _camera.targetTexture = shadowMap;
         _camera.SetReplacementShader(depthShader, null);
     }
