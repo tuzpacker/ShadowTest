@@ -48,6 +48,8 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\DepthMapGenerator.cs" />
+     <Compile Include="Assets\Script\TurnOnDepthBuffer.cs" />
+     <None Include="Assets\GameAssets\Shader\ShadowMap.shader" />
      <None Include="Assets\GameAssets\Shader\Chapter10-Fresnel.shader" />
      <None Include="Assets\GameAssets\Shader\GenerateDepthMap.shader" />
  <Reference Include="UnityEngine">

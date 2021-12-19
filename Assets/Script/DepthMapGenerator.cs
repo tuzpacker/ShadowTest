@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DepthMapGenerator : MonoBehaviour
 {
-    public Camera _camera;
     public RenderTexture shadowMap;
     public Shader depthShader;
     // Start is called before the first frame update
@@ -14,13 +13,18 @@ public class DepthMapGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _camera = GetComponent<Camera>();
+        var _camera = GetComponent<Camera>();
+        if (!_camera)
+            return;
 
         _camera.renderingPath = RenderingPath.Forward;
         //_camera.Render();
         ////世界坐标变化到从视口坐标 再projectionMatrix 投影矩阵变化到屏幕空间的
         var m = _camera.projectionMatrix * _camera.worldToCameraMatrix;
         Shader.SetGlobalMatrix("shadow_transform_mat", m);
+        Shader.SetGlobalTexture("shadowMap_data", shadowMap);
+        // 光照方向
+        Shader.SetGlobalVector("MyLightDir", transform.forward);
         _camera.targetTexture = shadowMap;
         _camera.SetReplacementShader(depthShader, null);
     }
