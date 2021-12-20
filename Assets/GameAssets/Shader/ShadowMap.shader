@@ -3,10 +3,12 @@ Shader "CustomShadow/ShadowMap"
     Properties
     {
         _dark ("shadow strength", Range(0, 1.0)) = 0.0
-        ambientColor ("Ambient Color", Color) = (0,0,0,0)
-		diffuseColor ("Diffuse Color", Color) = (1,1,1,1)
-		specularColor ("Specular Color", Color) = (1,1,1,1)
-		specularShininess ("Specular Shininess", Range(1,128)) = 10
+        _depthBias ("Depth Bias", Range(0, 0.2)) = 0.1
+        _normalBais ("Normal Bias",Range(0, 0.2)) = 0.1
+        _ambientColor ("Ambient Color", Color) = (0,0,0,0)
+		_diffuseColor ("Diffuse Color", Color) = (1,1,1,1)
+		_specularColor ("Specular Color", Color) = (1,1,1,1)
+		_specularShininess ("Specular Shininess", Range(1,128)) = 10
     }
     SubShader
     {
@@ -66,11 +68,13 @@ Shader "CustomShadow/ShadowMap"
             }
 
                         //光照参数
-            float4 MyLightDir;
-            float4 ambientColor;
-			float4 diffuseColor;
-			float4 specularColor;
-			float  specularShininess;
+            float4 _MyLightDir;
+            float4 _ambientColor;
+			float4 _diffuseColor;
+			float4 _specularColor;
+			float  _specularShininess;
+            float _depthBias;
+            float _normalBais;
 
             float _dark;//阴影强度
 
@@ -79,16 +83,16 @@ Shader "CustomShadow/ShadowMap"
             float4 basicLighting(float3 wpos, float3 normal)
 			{
 				float3 N = normalize(normal);
-				float3 L = normalize(-MyLightDir.xyz);
+				float3 L = normalize(-_MyLightDir.xyz);
 				float3 V = normalize(wpos - _WorldSpaceCameraPos);
 
 				float3 R = reflect(L,N);
 
-				float4 ambient  = ambientColor;
-				float4 diffuse  = diffuseColor * max(0, dot(N,L));
+				float4 ambient  = _ambientColor;
+				float4 diffuse  = _diffuseColor * max(0, dot(N,L));
 
 				float  specularAngle = max(0, dot(R,V));
-				float4 specular = specularColor * pow(specularAngle, specularShininess);
+				float4 specular = _specularColor * pow(specularAngle, _specularShininess);
 
 				float4 color = 0;
 				color += ambient;
@@ -103,7 +107,11 @@ Shader "CustomShadow/ShadowMap"
                 float4 deepVec = i.shadowPos;
                 // 正数化
                 float3 compare = deepVec.xyz*0.5+0.5;
-                float cur_depth = compare.z;
+                // 因为像素精度较低 倾斜平面的时候减去一个值矫正一下]
+                // float cur_depth = compare.z - _depthBias;
+                // 另一种方法是通过法线方向求出偏移量
+                
+                float cur_depth = compare.z - _depthBias;
                 // 获取深度贴图中的深度
                 float orign_depth=tex2D(shadowMap_data,compare).r;
 

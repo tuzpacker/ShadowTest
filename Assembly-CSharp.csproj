@@ -49,7 +49,8 @@
   <ItemGroup>
      <Compile Include="Assets\Script\DepthMapGenerator.cs" />
      <None Include="Assets\GameAssets\Shader\ShadowMap.shader" />
-     <None Include="Assets\GameAssets\Shader\Chapter10-Fresnel.shader" />
+     <None Include="Assets\GameAssets\Shader\Reflection.shader" />
+     <None Include="Assets\GameAssets\Shader\Fresnel.shader" />
      <None Include="Assets\GameAssets\Shader\GenerateDepthMap.shader" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.3f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
