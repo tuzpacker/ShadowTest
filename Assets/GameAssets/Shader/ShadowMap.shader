@@ -111,6 +111,7 @@ Shader "CustomShadow/ShadowMap"
                 // float cur_depth = compare.z - _depthBias;
                 // 另一种方法是通过法线方向求出偏移量
                 
+
                 float cur_depth = compare.z - _depthBias;
                 // 获取深度贴图中的深度
                 float orign_depth=tex2D(shadowMap_data,compare).r;
@@ -133,10 +134,10 @@ Shader "CustomShadow/ShadowMap"
                 
                 float4 s = shadow(i);
 
-                // float4 c = basicLighting(i.wpos, i.normal);
+                float4 c = basicLighting(i.wpos, i.normal);
                 
-				// return c * s;
-                return s;
+				return c * s;
+                // return s;
             }
             ENDCG
         }
