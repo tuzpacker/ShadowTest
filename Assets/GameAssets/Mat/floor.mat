@@ -23,12 +23,17 @@ Material:
         m_Texture: {fileID: 2800000, guid: c01bc2b4e0e030d49994969fadb7eb67, type: 3}
         m_Scale: {x: 0, y: 0}
         m_Offset: {x: 0, y: 0}
+    - _mainTexture:
+        m_Texture: {fileID: 2800000, guid: eeb88a58f0f9faf4d9d84e6c309cb931, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _dark: 0
-    - _depthBias: 0.1
-    - _normalBais: 0.1
-    - _specularShininess: 10
+    - _dark: 0.382
+    - _depthBias: 0.057
+    - _isNormalBias: 1
+    - _normalBais: 0.021
+    - _specularShininess: 21.2
     - specularShininess: 68.1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

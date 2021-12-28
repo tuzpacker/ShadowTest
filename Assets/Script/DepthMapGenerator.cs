@@ -19,7 +19,7 @@ public class DepthMapGenerator : MonoBehaviour
             return;
 
         _camera.renderingPath = RenderingPath.Forward;
-        Shader.SetGlobalVector("MyLightDir", transform.forward);
+        Shader.SetGlobalVector("_MyLightDir", transform.forward);
 
         //_camera.Render();
         ////世界坐标变化到从视口坐标 再projectionMatrix 投影矩阵变化到屏幕空间的

@@ -2,9 +2,10 @@ Shader "CustomShadow/ShadowMap"
 {
     Properties
     {
+        _mainTexture ("Texture", 2D) = "white" {}
+        _isNormalBias ("is Using Normal Bias",Int) = 0
         _dark ("shadow strength", Range(0, 1.0)) = 0.0
         _depthBias ("Depth Bias", Range(0, 0.2)) = 0.1
-        _normalBais ("Normal Bias",Range(0, 0.2)) = 0.1
         _ambientColor ("Ambient Color", Color) = (0,0,0,0)
 		_diffuseColor ("Diffuse Color", Color) = (1,1,1,1)
 		_specularColor ("Specular Color", Color) = (1,1,1,1)
@@ -74,9 +75,11 @@ Shader "CustomShadow/ShadowMap"
 			float4 _specularColor;
 			float  _specularShininess;
             float _depthBias;
-            float _normalBais;
 
             float _dark;//阴影强度
+            float _isNormalBias;
+
+            sampler2D _mainTexture;
 
             sampler2D shadowMap_data;     
 
@@ -107,21 +110,27 @@ Shader "CustomShadow/ShadowMap"
                 float4 deepVec = i.shadowPos;
                 // 正数化
                 float3 compare = deepVec.xyz*0.5+0.5;
-                // 因为像素精度较低 倾斜平面的时候减去一个值矫正一下]
+                // 因为像素精度较低 倾斜平面的时候减去一个值矫正一下 与斜率无关 如斜率特别大 会产生bias比须特别大才能生效
                 // float cur_depth = compare.z - _depthBias;
-                // 另一种方法是通过法线方向求出偏移量
-                
+                // 另一种方法是通过法线方向求出偏移量 假定当前分辨率和显示分辨率之间计算差l之后会错误 则做补偿
+                float slope = 1;
+                if(_isNormalBias==1){
+                    float3 N = normalize(i.normal);
+                    float3 L = normalize(-_MyLightDir.xyz);
+                    slope = tan(acos(dot(N,L)));
+                }      
+                // return float4(slope,slope,slope,1);   
 
-                float cur_depth = compare.z - _depthBias;
+                float cur_depth = compare.z - _depthBias * slope;
                 // 获取深度贴图中的深度
                 float orign_depth=tex2D(shadowMap_data,compare).r;
 
-                // 比较
                 // return float4(cur_depth,0,0,1);
+                float4 color = tex2D(_mainTexture, i.uv);
                 if(cur_depth<=orign_depth){
-                    return float4(1,1,1,1);
+                    return color;
                 }else{
-                    return float4(_dark,_dark,_dark,1);
+                    return float4(_dark*color.r,_dark*color.g,_dark*color.b,1);
                 }
             }
 
